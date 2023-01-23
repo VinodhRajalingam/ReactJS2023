@@ -1,17 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import InputComponent from './InputComponent.js';
+import IncreaseDecreaseComponent from './IncDecComponent';
+import ArrayComponent from './ArrayComponent.js';
+import ArrayFilter from './ArrayFilter.js';
+//import ToDoComponent from './ToDoComponent';  
+//import ArrayDestructure from './ArrayDestructure';
+import ToDoEditComponent from './ToDoEditComponent';
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <App/>
+  <Router>
+  <div><br/><br/></div>
+  <div className='App'>
+      <Link to={'/'}></Link>
+      <Link to={'/input'}>Input</Link> | 
+      <Link to={'/IncreaseDecreaseComponent'}> IncreaseDecreaseComponent</Link> |
+      <Link to={'/ArrayComponent'}> ArrayComponent</Link> |
+      <Link to={'/ArrayFilter'}> ArrayFilter</Link> |
+{/*   <Link to={'/ToDoComponent'}> ToDoComponent</Link> | 
+      <Link to={'/ArrayDestructure'}> ArrayDestructure</Link> */} | 
+      <Link to={'/ToDoEditComponent'}> ToDoComponent</Link></div>
+    <Routes>
+      <Route path='/' element=''></Route>
+      <Route path='/input' element = {<InputComponent/>}></Route>
+      <Route path='/IncreaseDecreaseComponent' element = {<IncreaseDecreaseComponent/>}></Route>
+      <Route path='/ArrayComponent' element = {<ArrayComponent/>}></Route>
+      <Route path='/ArrayFilter' element = {<ArrayFilter/>}></Route>
+{/*       <Route path='/ToDoComponent' element = {<ToDoComponent/>}></Route>
+      <Route path='/ArrayDestructure' element = {<ArrayDestructure/>}></Route> */}
+      <Route path='/ToDoEditComponent' element = {<ToDoEditComponent/>}></Route>
+    </Routes>
+  </Router>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
