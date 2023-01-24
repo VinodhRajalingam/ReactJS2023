@@ -8,6 +8,7 @@ import ArrayFilter from './ArrayFilter.js';
 //import ToDoComponent from './ToDoComponent';  
 //import ArrayDestructure from './ArrayDestructure';
 import ToDoEditComponent from './ToDoEditComponent';
+import BootCall from './BootCall';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,8 +24,9 @@ root.render(
       <Link to={'/ArrayComponent'}> ArrayComponent</Link> |
       <Link to={'/ArrayFilter'}> ArrayFilter</Link> |
 {/*   <Link to={'/ToDoComponent'}> ToDoComponent</Link> | 
-      <Link to={'/ArrayDestructure'}> ArrayDestructure</Link> */} | 
-      <Link to={'/ToDoEditComponent'}> ToDoComponent</Link></div>
+      <Link to={'/ArrayDestructure'}> ArrayDestructure</Link> | */} 
+      <Link to={'/ToDoEditComponent'}> ToDoComponent</Link> | 
+      <Link to={'/BootCall'}> BootCall</Link></div>
     <Routes>
       <Route path='/' element=''></Route>
       <Route path='/input' element = {<InputComponent/>}></Route>
@@ -34,6 +36,7 @@ root.render(
 {/*       <Route path='/ToDoComponent' element = {<ToDoComponent/>}></Route>
       <Route path='/ArrayDestructure' element = {<ArrayDestructure/>}></Route> */}
       <Route path='/ToDoEditComponent' element = {<ToDoEditComponent/>}></Route>
+      <Route path='/BootCall' element = {<BootCall/>}></Route>
     </Routes>
   </Router>
   </React.StrictMode>

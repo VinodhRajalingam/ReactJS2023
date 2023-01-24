@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 function EditToDo(params) {
 
-    const [updatedToDo,setUpdatedToDo] = useState('');
+    const [updatedToDo,setUpdatedToDo] = useState(params.task.task);
 
     const updateToDo = () => {
 
