@@ -72,3 +72,10 @@
     transform: rotate(360deg);
   }
 }
+.checked-item,
+.not-checked-item {
+  margin-left: 10px;
+}
+.checked-item {
+  text-decoration: line-through;
+}

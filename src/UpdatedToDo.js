@@ -2,13 +2,12 @@ import React,{useState,useRef} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import EditToDo from './EditToDo'
 
-function ToDoEditComponent() {
+function UpdatedToDo() {
 
 const [toDo, setTodo] = useState('');
 const inputRef = useRef(null);
 const [toDoList, setTodoList] = useState([]);
 const [updateState, setUpdateState] = useState(-1);
-//const [checked, setChecked] = useState([]);
 
 const formList = (tasks) =>  {
   setTodoList([...toDoList,tasks]);
@@ -19,35 +18,26 @@ const formList = (tasks) =>  {
 const addToDo = () => {
     const tasks = {
       id: uuidv4(),
-      task : toDo
+      task : toDo,
+      isChecked : false
     }; 
-
+    
    toDo ? formList(tasks) : setTodoList([...toDoList]);
 }
+const handleCheckbox = (id) => {
+
+    const newList = toDoList.map((toDo) => { 
+        return id === toDo.id ? {...toDo, isChecked : !toDo.isChecked} : toDo
+    })
+    setTodoList(newList)
+}
+
 const removeToDo = params => setTodoList(toDoList.filter((name)=>!params.includes(name.id)));
 
 const editToDo = (params) => {
     setUpdateState(params);
 };
 
-/* const handleCheck = (event) => {
-  var updatedList = [...checked];
-  if (event.target.checked) {
-    updatedList = [...checked, event.target.value];
-  } else {
-    updatedList.splice(checked.indexOf(event.target.value), 1);
-  }
-  setChecked(updatedList);
-}; */
-
-/* const strikeThroughToDo = {
-   textDecor : checked ? {fontSize:'25px', fontWeight : 'bold' , textDecoration: 'line-through'} : 
-                         {fontSize:'25px', fontWeight : 'bold'}
-} */
-/* var isChecked = (item) =>
-    checked.includes(item) ? "checked-item" : "not-checked-item"; */
-
-    
   return (
     <div className='App' style={{
       paddingTop: '50px',
@@ -61,20 +51,21 @@ const editToDo = (params) => {
                   <div key={uuidv4()} className='toDoLists'> 
                   {updateState === e.id ? <EditToDo task = {e} lists = {toDoList} setUpdateState = {setUpdateState} /> : 
                   <div>
-                  {/* <input type="checkbox" value = {e.task} onChange = {handleCheck} style={{paddingLeft:'15px' , width : '25px'}}></input> */}
-                  {/* <span style={strikeThroughToDo.textDecor}>{e.task}</span> */}
-                  {/* <span className={isChecked(e.task)}>{e.task}</span> */}
-                  <span>{e.task}</span>
-                  <button onClick={()=>editToDo(e.id)} className='button'>Edit</button>
-                  <button onClick={()=>removeToDo(e.id)} className='button'>Remove</button> 
-                  </div> } 
+                    {e.isChecked}
+                  <input type = "checkbox" 
+                         checked = {e.isChecked} 
+                         onChange = {() => handleCheckbox(e.id)} 
+                  >
+                  </input>
+                  <span className = { e.isChecked === true ? 'checked-item' : 'not-checked-item'}>{e.task}</span>
+                  <button onClick = {() => editToDo(e.id)} className='button'>Edit</button>
+                  <button onClick = {() => removeToDo(e.id)} className='button'>Remove</button> 
+                  </div>} 
                   </div>)
-
              })}
-        </div>
-        
+        </div>       
     </div>
   )
 }
 
-export default ToDoEditComponent
+export default UpdatedToDo
